@@ -1,0 +1,20 @@
+---
+title: "Deploying Python Applications on AWS"
+publishedAt: "2024-08-15"
+summary: "A guide to deploying Python applications on AWS, focusing on EC2, S3, and RDS."
+---
+
+AWS provides a comprehensive suite of services that can be used to deploy and manage Python applications in the cloud. In this post, we'll cover how to deploy a Python web application on an EC2 instance, set up an S3 bucket for static files, and use RDS for database management.
+
+```bash
+# Install AWS CLI and configure credentials
+aws configure
+
+# Launch an EC2 instance
+aws ec2 run-instances --image-id ami-0123456789abcdef --instance-type t2.micro --key-name my-key-pair --security-group-ids sg-0123456789abcdef
+
+# Upload static files to S3
+aws s3 cp /path/to/static/files s3://mybucket/static/ --recursive
+```
+
+We'll also discuss automating deployments with AWS CodeDeploy, managing infrastructure with Terraform or CloudFormation, and how to optimize your AWS setup for cost efficiency and performance.

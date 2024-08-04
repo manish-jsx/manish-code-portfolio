@@ -1,0 +1,31 @@
+---
+title: "Getting Started with Flask: A Micro Framework for Web Development"
+publishedAt: "2024-07-01"
+summary: "An introduction to Flask, its lightweight architecture, and how to build your first web application."
+---
+
+Flask is a micro web framework for Python that's easy to get started with and perfect for small to medium-sized web applications. In this post, we'll dive into the core concepts of Flask, such as routing, templates, and request handling, and we'll build a simple blog application.
+
+```python
+from flask import Flask, render_template, request, redirect, url_for
+
+app = Flask(__name__)
+
+posts = []
+
+@app.route('/')
+def index():
+    return render_template('index.html', posts=posts)
+
+@app.route('/post', methods=['POST'])
+def post():
+    title = request.form['title']
+    content = request.form['content']
+    posts.append({'title': title, 'content': content})
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+In this example, we create a simple blog application with Flask that allows users to add posts. We'll also discuss how to structure larger applications, manage configurations, and extend Flask with useful extensions.

@@ -1,0 +1,32 @@
+---
+title: "Creating RESTful APIs with Django Rest Framework"
+publishedAt: "2024-07-10"
+summary: "How to build RESTful APIs using Django Rest Framework (DRF) for your web and mobile applications."
+---
+
+Django Rest Framework (DRF) is a powerful toolkit for building Web APIs. This post will guide you through creating a RESTful API for a blog application. We'll discuss serializers, views, routers, and how to handle authentication and permissions.
+
+```python
+from rest_framework import serializers, viewsets, routers
+from django.contrib.auth.models import User
+from .models import Post
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = '__all__'
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+router = routers.DefaultRouter()
+router.register(r'posts', PostViewSet)
+```
+
+We'll also cover how to set up token-based authentication and permissions to protect your API endpoints. By the end of this tutorial, you'll have a robust API that can be consumed by frontend or mobile applications.

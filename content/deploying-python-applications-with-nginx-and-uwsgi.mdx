@@ -1,0 +1,25 @@
+---
+title: "Deploying Python Applications with Nginx and uWSGI"
+publishedAt: "2024-08-05"
+summary: "How to deploy Python web applications using Nginx and uWSGI for production environments."
+---
+
+Nginx is a powerful web server that can also be used as a reverse proxy, load balancer, and HTTP cache. In this post, we'll explore how to deploy Python applications using Nginx and uWSGI. We'll cover the configuration of Nginx and uWSGI, as well as how to optimize the setup for production.
+
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com;
+
+    location / {
+        include uwsgi_params;
+        uwsgi_pass unix:/path/to/yourapp.sock;
+    }
+
+    location /static/ {
+        alias /path/to/static/;
+    }
+}
+```
+
+We'll also discuss configuring uWSGI, optimizing Nginx for static file handling, and setting up SSL with Let's Encrypt. By the end of this post, you'll have a secure, efficient, and scalable deployment setup for your Python applications.

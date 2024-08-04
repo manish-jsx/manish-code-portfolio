@@ -1,0 +1,24 @@
+---
+title: "Building CMS with Wagtail: A Django-Powered CMS"
+publishedAt: "2024-07-15"
+summary: "Introduction to Wagtail CMS and how to build a customizable content management system using Django."
+---
+
+Wagtail is a modern CMS built on top of Django, offering an intuitive interface for content creators and powerful features for developers. In this post, we'll explore Wagtail's features, such as page models, streamfields, and the built-in editor.
+
+```python
+from wagtail.core.models import Page
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.fields import RichTextField
+
+class BlogPage(Page):
+    introduction = RichTextField(blank=True)
+    body = RichTextField()
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduction'),
+        FieldPanel('body'),
+    ]
+```
+
+Wagtail is highly customizable, allowing you to build a CMS that suits your project's needs. We'll discuss how to extend Wagtail with custom models, create a user-friendly admin interface, and integrate third-party packages like Wagtail's search module.
